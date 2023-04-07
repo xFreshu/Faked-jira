@@ -1,8 +1,6 @@
 'use client';
-
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-
 export default function Page() {
   const router = useRouter();
   const {
@@ -12,20 +10,21 @@ export default function Page() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
+    const newProject = { ...data, id: 1 };
+    console.log(newProject);
     try {
-      router.push('/dashboard');
+      router.push(`/project/${newProject.id}`);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <div>
-      <h1>Page</h1>
+      <h1>Create project</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input defaultValue='test' {...register('example')} />
-        <input {...register('exampleRequired', { required: true })} />
-        {errors.exampleRequired && <span>This field is required</span>}
+        <input defaultValue='' {...register('Project name')} />
+        <input {...register('test', { required: true })} />
+        {errors.test && <span>This field is required</span>}
         <input type='submit' />
       </form>
     </div>
