@@ -1,5 +1,5 @@
 'use client';
-
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
@@ -21,7 +21,7 @@ export default function Page() {
   };
   return (
     <div>
-      <h1>Page</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input defaultValue='test' {...register('example')} />
         <input {...register('exampleRequired', { required: true })} />

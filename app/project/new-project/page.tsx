@@ -1,6 +1,7 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { uuid } from 'uuidv4';
 export default function Page() {
   const router = useRouter();
   const {
@@ -10,7 +11,7 @@ export default function Page() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => {
-    const newProject = { ...data, id: 1 };
+    const newProject = { ...data, id: uuid() };
     console.log(newProject);
     try {
       router.push(`/project/${newProject.id}`);
